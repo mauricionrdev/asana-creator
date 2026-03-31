@@ -1,5 +1,5 @@
-import { ProjectCreatorScreenV3 } from "@/components/project-creator-screen-v3";
+import { ProjectCreatorScreenV4 } from "@/components/project-creator-screen-v4";
 
 export default function Home() {
-  return <ProjectCreatorScreenV3 />;
+  return <ProjectCreatorScreenV4 />;
 }

@@ -113,7 +113,15 @@ export function AnimatedProjectButton({
   ]
     .filter(Boolean)
     .join(" ");
-  const iconClassName = [styles.icon, isBusyVisual ? styles.iconBusy : ""].filter(Boolean).join(" ");
+  const iconClassName = [
+    styles.icon,
+    isBusyVisual ? styles.iconBusy : "",
+    visualState === "starting" ? styles.iconStarting : "",
+    visualState === "loading" ? styles.iconLoading : "",
+    visualState === "stopping" ? styles.iconStopping : ""
+  ]
+    .filter(Boolean)
+    .join(" ");
   const idleLabelClassName = [
     styles.label,
     visualState === "idle" ? styles.labelIdleVisible : styles.labelIdleHidden
@@ -136,10 +144,6 @@ export function AnimatedProjectButton({
   return (
     <button className={className} disabled={disabled} onClick={onClick} type={type}>
       <span className={styles.content}>
-        <span className={iconWrapClassName}>
-          <span className={styles.smoke} aria-hidden="true" />
-          <Icon name="rocket_launch" filled className={iconClassName} />
-        </span>
         <span className={styles.labelStack}>
           <span className={idleLabelClassName}>Criar projeto</span>
           <span className={loadingLabelClassName}>
@@ -150,6 +154,10 @@ export function AnimatedProjectButton({
               <span>.</span>
             </span>
           </span>
+        </span>
+        <span className={iconWrapClassName}>
+          <span className={styles.smoke} aria-hidden="true" />
+          <Icon name="rocket_launch" filled className={iconClassName} />
         </span>
       </span>
     </button>

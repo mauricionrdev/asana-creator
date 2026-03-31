@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { AnimatedProjectButton } from "@/components/animated-project-button";
@@ -29,7 +29,7 @@ const initialFormState: FormState = {
   responsavelCampanhas: ""
 };
 
-export function ProjectCreatorScreenV3() {
+export function ProjectCreatorScreenV4() {
   const [mode, setMode] = useState<Mode>("fixed");
   const [formState, setFormState] = useState<FormState>(initialFormState);
   const [users, setUsers] = useState<UserOption[]>([]);
@@ -173,12 +173,12 @@ export function ProjectCreatorScreenV3() {
       setErrorMessage("Não foi possível concluir o envio agora. Tente novamente.");
     } finally {
       setProgress(100);
-      await wait(520);
+      await wait(620);
       setSubmitting(false);
       window.setTimeout(() => {
         setProgressVisible(false);
         setProgress(0);
-      }, 260);
+      }, 320);
     }
   }
 
@@ -265,28 +265,16 @@ export function ProjectCreatorScreenV3() {
                   <label className={styles.label} htmlFor="proprietarioProjeto">
                     Proprietário do projeto
                   </label>
-                  <div className={styles.selectWrap}>
-                    <select
-                      className={styles.select}
-                      disabled={usersDisabled}
-                      id="proprietarioProjeto"
-                      onChange={(event) => updateField("proprietarioProjeto", event.target.value)}
-                      required
-                      value={formState.proprietarioProjeto}
-                    >
-                      <option value="">
-                        {loadingUsers ? "Carregando responsáveis..." : "Selecionar proprietário..."}
-                      </option>
-                      {users.map((user) => (
-                        <option key={`owner-${user.gid}`} value={user.gid}>
-                          {user.name}
-                        </option>
-                      ))}
-                    </select>
-                    <span aria-hidden="true" className={styles.chevron}>
-                      ▾
-                    </span>
-                  </div>
+                  <FancySelect
+                    disabled={usersDisabled}
+                    id="proprietarioProjeto"
+                    onChange={(value) => updateField("proprietarioProjeto", value)}
+                    options={users}
+                    placeholder={
+                      loadingUsers ? "Carregando responsáveis..." : "Selecionar proprietário..."
+                    }
+                    value={formState.proprietarioProjeto}
+                  />
                 </div>
 
                 {mode === "by_front" ? (
@@ -304,28 +292,16 @@ export function ProjectCreatorScreenV3() {
                                   ? "Responsável pelo pente fino"
                                   : "Responsável por subir as campanhas"}
                         </label>
-                        <div className={styles.selectWrap}>
-                          <select
-                            className={styles.select}
-                            disabled={usersDisabled}
-                            id={front.field}
-                            onChange={(event) => updateField(front.field, event.target.value)}
-                            required
-                            value={formState[front.field]}
-                          >
-                            <option value="">
-                              {loadingUsers ? "Carregando responsáveis..." : "Selecionar responsável..."}
-                            </option>
-                            {users.map((user) => (
-                              <option key={`${front.field}-${user.gid}`} value={user.gid}>
-                                {user.name}
-                              </option>
-                            ))}
-                          </select>
-                          <span aria-hidden="true" className={styles.chevron}>
-                            ▾
-                          </span>
-                        </div>
+                        <FancySelect
+                          disabled={usersDisabled}
+                          id={front.field}
+                          onChange={(value) => updateField(front.field, value)}
+                          options={users}
+                          placeholder={
+                            loadingUsers ? "Carregando responsáveis..." : "Selecionar responsável..."
+                          }
+                          value={formState[front.field]}
+                        />
                       </div>
                     ))}
                   </>
@@ -341,7 +317,17 @@ export function ProjectCreatorScreenV3() {
 
                 {feedback?.success ? (
                   <div className={styles.successBox}>
-                    <strong>Projeto criado com sucesso.</strong>
+                    <div className={styles.successHeader}>
+                      <span className={`material-symbols-outlined ${styles.successIcon}`}>
+                        check_circle
+                      </span>
+                      <div className={styles.successCopy}>
+                        <strong>Projeto criado com sucesso</strong>
+                        <p className={styles.successSummary}>
+                          O novo projeto já está pronto no Asana.
+                        </p>
+                      </div>
+                    </div>
                     <a href={feedback.projectUrl} rel="noreferrer" target="_blank">
                       Abrir projeto no Asana
                     </a>
@@ -376,7 +362,11 @@ export function ProjectCreatorScreenV3() {
         <div className={styles.footerInner}>
           <span>© 2026 Asana-Creator.</span>
           <div className={styles.footerLinks}>
-            <a href="https://formulario.edificajuridico.com/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://formulario.edificajuridico.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Edifica Leads
             </a>
             <a href="https://app.asana.com/" target="_blank" rel="noopener noreferrer">
