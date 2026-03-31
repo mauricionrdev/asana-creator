@@ -122,56 +122,36 @@
   text-transform: none;
 }
 
-.backgroundSquares {
+.backgroundGrid {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   user-select: none;
+  overflow: hidden;
 }
 
-.square {
+.backgroundGrid::before,
+.backgroundGrid::after {
+  content: "";
   position: absolute;
-  display: block;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.004));
-  opacity: 0.52;
-  animation: squareDrift 24s ease-in-out infinite;
+  inset: 0;
 }
 
-.squareA {
-  top: 122px;
-  left: calc(50% - 410px);
-  width: 112px;
-  height: 112px;
-  animation-duration: 22s;
+.backgroundGrid::before {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: center top;
+  mask-image: radial-gradient(circle at 50% 42%, rgba(0, 0, 0, 0.82), transparent 82%);
+  -webkit-mask-image: radial-gradient(circle at 50% 42%, rgba(0, 0, 0, 0.82), transparent 82%);
+  opacity: 0.34;
+  animation: gridFloat 24s ease-in-out infinite;
 }
 
-.squareB {
-  top: 210px;
-  right: calc(50% - 418px);
-  width: 76px;
-  height: 76px;
-  animation-duration: 26s;
-  animation-delay: -6s;
-}
-
-.squareC {
-  top: 482px;
-  left: calc(50% - 500px);
-  width: 148px;
-  height: 148px;
-  animation-duration: 28s;
-  animation-delay: -11s;
-}
-
-.squareD {
-  top: 620px;
-  right: calc(50% - 470px);
-  width: 94px;
-  height: 94px;
-  animation-duration: 24s;
-  animation-delay: -14s;
+.backgroundGrid::after {
+  content: none;
 }
 
 .centerCol {
@@ -822,26 +802,16 @@
   }
 }
 
-@keyframes squareDrift {
+@keyframes gridFloat {
   0%,
   100% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-    opacity: 0.24;
-  }
-
-  25% {
-    transform: translate3d(8px, -10px, 0) rotate(1deg);
-    opacity: 0.38;
-  }
-
-  50% {
-    transform: translate3d(-6px, 8px, 0) rotate(-1.4deg);
+    transform: translate3d(0, 0, 0);
     opacity: 0.26;
   }
 
-  75% {
-    transform: translate3d(10px, 4px, 0) rotate(0.8deg);
-    opacity: 0.34;
+  50% {
+    transform: translate3d(8px, -10px, 0);
+    opacity: 0.38;
   }
 }
 
@@ -999,7 +969,7 @@
     padding: 44px 20px 60px;
   }
 
-  .backgroundSquares {
+  .backgroundGrid {
     display: none;
   }
 
