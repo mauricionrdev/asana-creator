@@ -1,0 +1,10 @@
+.env
+.env.local
+.env.production
+.env-backup
+.next
+.next-build
+node_modules
+coverage
+dist
+npm-debug.log*
