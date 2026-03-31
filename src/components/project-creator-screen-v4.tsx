@@ -194,8 +194,7 @@ export function ProjectCreatorScreenV4() {
     <main className={styles.page}>
       <header className={styles.topbar}>
         <div className={styles.topbarInner}>
-          <div className={styles.brand}>Asana-Creator</div>
-          <div className={styles.topbarActions}>
+          <div className={styles.brandCluster}>
             <button
               className={styles.topIconButton}
               type="button"
@@ -205,20 +204,35 @@ export function ProjectCreatorScreenV4() {
               <img
                 src="/logo.png"
                 alt="Edifica"
-                style={{ height: 35, width: "auto", filter: "brightness(0) invert(1)" }}
+                className={styles.topLogo}
               />
             </button>
+          </div>
+          <div className={styles.topbarActions}>
+            <div className={styles.productMark}>
+              <strong>Criador de Projetos</strong>
+              <span>automação interna</span>
+            </div>
           </div>
         </div>
         <div className={styles.topbarRule} />
       </header>
 
       <section className={styles.main}>
+        <div className={styles.backgroundWord} aria-hidden="true">
+          Edifica
+        </div>
+        <div className={styles.backgroundSquares} aria-hidden="true">
+          <span className={`${styles.square} ${styles.squareA}`} />
+          <span className={`${styles.square} ${styles.squareB}`} />
+          <span className={`${styles.square} ${styles.squareC}`} />
+          <span className={`${styles.square} ${styles.squareD}`} />
+        </div>
         <div className={styles.centerCol}>
           <div className={styles.hero}>
             <h1 className={styles.title}>Criar projeto</h1>
             <p className={styles.subtitle}>
-              Escolha um modelo de atribuição para gerar seu novo projeto.
+              Automação interna para criação de projetos no Asana.
             </p>
           </div>
 
@@ -279,38 +293,41 @@ export function ProjectCreatorScreenV4() {
 
                 {mode === "by_front" ? (
                   <>
-                    {FRONT_LABELS.map((front) => (
-                      <div className={styles.fieldGroup} key={front.field}>
-                        <label className={styles.label} htmlFor={front.field}>
-                          {front.field === "responsavelColetaCartao"
-                            ? "Responsável pela coleta do cartão"
-                            : front.field === "responsavelConfiguracaoTecnica"
-                              ? "Responsável pela configuração técnica"
-                              : front.field === "responsavelIntegracaoCanais"
-                                ? "Responsável pela integração de canais"
-                                : front.field === "responsavelPenteFino"
-                                  ? "Responsável pelo pente fino"
-                                  : "Responsável por subir as campanhas"}
-                        </label>
-                        <FancySelect
-                          disabled={usersDisabled}
-                          id={front.field}
-                          onChange={(value) => updateField(front.field, value)}
-                          options={users}
-                          placeholder={
-                            loadingUsers ? "Carregando responsáveis..." : "Selecionar responsável..."
-                          }
-                          value={formState[front.field]}
-                        />
-                      </div>
-                    ))}
+                    <div className={styles.sectionDivider} aria-hidden="true" />
+                    <div className={styles.frontGrid}>
+                      {FRONT_LABELS.map((front) => (
+                        <div className={`${styles.fieldGroup} ${styles.frontField}`} key={front.field}>
+                          <label className={styles.label} htmlFor={front.field}>
+                            {front.field === "responsavelColetaCartao"
+                              ? "Coleta do cartão"
+                              : front.field === "responsavelConfiguracaoTecnica"
+                                ? "Configuração técnica"
+                                : front.field === "responsavelIntegracaoCanais"
+                                  ? "Integração de canais"
+                                  : front.field === "responsavelPenteFino"
+                                    ? "Pente fino"
+                                    : "Subir campanhas"}
+                          </label>
+                          <FancySelect
+                            disabled={usersDisabled}
+                            id={front.field}
+                            onChange={(value) => updateField(front.field, value)}
+                            options={users}
+                            placeholder={
+                              loadingUsers ? "Carregando responsáveis..." : "Selecionar responsável..."
+                            }
+                            value={formState[front.field]}
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </>
                 ) : null}
 
                 <p className={styles.helperText}>
                   {mode === "fixed"
-                    ? "Mantém os responsáveis padrão do modelo e aplica o proprietário selecionado."
-                    : "Define manualmente os responsáveis por cada seção e aplica o proprietário."}
+                    ? "Usa a configuração padrão do modelo e aplica o proprietário selecionado."
+                    : "Permite distribuir responsáveis por seção antes da criação automatizada."}
                 </p>
 
                 {errorMessage ? <div className={styles.errorBox}>{errorMessage}</div> : null}
@@ -324,7 +341,7 @@ export function ProjectCreatorScreenV4() {
                       <div className={styles.successCopy}>
                         <strong>Projeto criado com sucesso</strong>
                         <p className={styles.successSummary}>
-                          O novo projeto já está pronto no Asana.
+                          A automação foi concluída e o projeto já está disponível no Asana.
                         </p>
                       </div>
                     </div>
@@ -360,17 +377,20 @@ export function ProjectCreatorScreenV4() {
 
       <footer className={styles.footer}>
         <div className={styles.footerInner}>
-          <span>© 2026 Asana-Creator.</span>
+          <div className={styles.footerMeta}>
+            <span>Criador de Projetos</span>
+            <span>Uso interno Edifica</span>
+          </div>
           <div className={styles.footerLinks}>
+            <a href="https://app.asana.com/" target="_blank" rel="noopener noreferrer">
+              Asana
+            </a>
             <a
               href="https://formulario.edificajuridico.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
               Edifica Leads
-            </a>
-            <a href="https://app.asana.com/" target="_blank" rel="noopener noreferrer">
-              Asana
             </a>
           </div>
         </div>

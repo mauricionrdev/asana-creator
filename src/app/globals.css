@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@200;300;400;500;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap");
 
 :root {
   --background: #0e0e0e;
@@ -15,7 +15,7 @@
   --danger: #ed7f64;
   --success: #9fd48f;
   --font-headline: "Manrope", "Segoe UI", sans-serif;
-  --font-body: "Inter", "Segoe UI", sans-serif;
+  --font-body: "Plus Jakarta Sans", "Segoe UI", sans-serif;
 }
 
 * {
@@ -59,8 +59,8 @@ select {
 }
 
 ::selection {
-  background: var(--primary);
-  color: #0e0e0e;
+  background: rgba(131, 58, 180, 0.28);
+  color: #f6f2fb;
 }
 
 *::-webkit-scrollbar {
