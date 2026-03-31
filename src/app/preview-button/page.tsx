@@ -141,6 +141,14 @@ export default function PreviewButtonPage() {
           <div className={styles.progressTrack} aria-hidden="true">
             <div className={styles.progressFill} style={{ width: `${progress}%` }} />
           </div>
+          <p className={styles.progressHint}>
+            Isso pode levar 1 minuto ou alguns minutos
+            <span className={styles.progressHintDots} aria-hidden="true">
+              <span>.</span>
+              <span>.</span>
+              <span>.</span>
+            </span>
+          </p>
         </div>
 
         <div className={successBoxClassName}>
