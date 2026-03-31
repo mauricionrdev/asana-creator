@@ -1,0 +1,300 @@
+.page {
+  min-height: 100vh;
+  padding: 32px;
+}
+
+.shell {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 12px 0 32px;
+}
+
+.brand {
+  margin: 0;
+  color: var(--primary-strong);
+  font: 800 1.2rem/1 var(--font-headline);
+  letter-spacing: -0.04em;
+}
+
+.nav {
+  display: flex;
+  gap: 24px;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.8fr);
+  gap: 24px;
+  align-items: end;
+  padding: 40px 0;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.hero h1 {
+  margin: 0;
+  font: 800 clamp(3rem, 8vw, 5.4rem) / 0.95 var(--font-headline);
+  letter-spacing: -0.06em;
+}
+
+.subtitle {
+  width: min(640px, 100%);
+  margin: 18px 0 0;
+  color: var(--text-muted);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.heroCard {
+  display: grid;
+  gap: 8px;
+  padding: 28px;
+  background: linear-gradient(180deg, rgba(31, 32, 32, 0.92), rgba(19, 19, 19, 0.96));
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+}
+
+.heroCard span {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.heroCard strong {
+  font: 700 1.5rem/1.2 var(--font-headline);
+}
+
+.workspace {
+  display: grid;
+  gap: 28px;
+  padding: 36px;
+  background: rgba(19, 19, 19, 0.86);
+  border-radius: 32px;
+  backdrop-filter: blur(20px);
+}
+
+.tabRow {
+  display: flex;
+  gap: 16px;
+  border-bottom: 1px solid var(--outline);
+  overflow-x: auto;
+}
+
+.tab,
+.activeTab {
+  padding: 0 0 18px;
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.activeTab {
+  color: var(--primary);
+  box-shadow: inset 0 -2px 0 var(--primary);
+}
+
+.form {
+  display: grid;
+  gap: 28px;
+}
+
+.primaryCard {
+  display: grid;
+  gap: 14px;
+  padding: 28px;
+  background: var(--surface);
+  border-radius: 24px;
+}
+
+.fieldLabel {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.projectInput {
+  width: 100%;
+  padding: 12px 0 16px;
+  border: 0;
+  border-bottom: 2px solid rgba(233, 196, 0, 0.24);
+  background: transparent;
+  color: var(--text);
+  font: 300 clamp(1.75rem, 4vw, 2.8rem) / 1.1 var(--font-headline);
+  outline: none;
+}
+
+.projectInput:focus {
+  border-bottom-color: var(--primary);
+}
+
+.helperText {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.selectCard {
+  display: grid;
+  gap: 14px;
+  min-height: 170px;
+  padding: 24px;
+  background: var(--surface);
+  border-radius: 24px;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.selectCard:hover {
+  background: var(--surface-high);
+  transform: translateY(-2px);
+}
+
+.selectCard:nth-child(3) {
+  grid-column: 1 / -1;
+}
+
+.cardLabel {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.select {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 1.08rem;
+  font-weight: 600;
+  outline: none;
+}
+
+
+.select:disabled {
+  color: #767575;
+}
+
+.sectionHint {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.errorBox,
+.successBox {
+  display: grid;
+  gap: 10px;
+  padding: 18px 20px;
+  border-radius: 20px;
+  background: var(--surface);
+}
+
+.errorBox {
+  color: #ffc2b4;
+  box-shadow: inset 3px 0 0 var(--danger);
+}
+
+.successBox {
+  color: #dff4d7;
+  box-shadow: inset 3px 0 0 var(--success);
+}
+
+.successBox a {
+  color: var(--primary-strong);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.warningList {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--text-muted);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submitButton {
+  padding: 18px 28px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary-strong), var(--primary));
+  color: var(--primary-ink);
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 20px 40px rgba(233, 196, 0, 0.16);
+}
+
+.submitButton:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+@media (max-width: 860px) {
+  .page {
+    padding: 20px;
+  }
+
+  .topbar,
+  .hero,
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .workspace {
+    padding: 24px;
+  }
+
+  .selectCard:nth-child(3) {
+    grid-column: auto;
+  }
+
+  .actions {
+    justify-content: stretch;
+  }
+
+  .submitButton {
+    width: 100%;
+  }
+}
