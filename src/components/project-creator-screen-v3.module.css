@@ -122,38 +122,6 @@
   text-transform: none;
 }
 
-.backgroundGrid {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  user-select: none;
-  overflow: hidden;
-}
-
-.backgroundGrid::before,
-.backgroundGrid::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-}
-
-.backgroundGrid::before {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 56px 56px;
-  background-position: center top;
-  mask-image: radial-gradient(circle at 50% 42%, rgba(0, 0, 0, 0.82), transparent 82%);
-  -webkit-mask-image: radial-gradient(circle at 50% 42%, rgba(0, 0, 0, 0.82), transparent 82%);
-  opacity: 0.34;
-  animation: gridFloat 24s ease-in-out infinite;
-}
-
-.backgroundGrid::after {
-  content: none;
-}
-
 .centerCol {
   position: relative;
   z-index: 1;
@@ -802,19 +770,6 @@
   }
 }
 
-@keyframes gridFloat {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-    opacity: 0.26;
-  }
-
-  50% {
-    transform: translate3d(8px, -10px, 0);
-    opacity: 0.38;
-  }
-}
-
 @keyframes successReveal {
   0% {
     opacity: 0;
@@ -967,10 +922,6 @@
 @media (max-width: 1023px) {
   .main {
     padding: 44px 20px 60px;
-  }
-
-  .backgroundGrid {
-    display: none;
   }
 
   .backgroundWord {

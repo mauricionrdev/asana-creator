@@ -243,7 +243,6 @@ export function ProjectCreatorScreenV4() {
         <div className={styles.backgroundWord} aria-hidden="true">
           Edifica
         </div>
-        <div className={styles.backgroundGrid} aria-hidden="true" />
         <div className={styles.centerCol}>
           <div className={styles.hero}>
             <h1 className={styles.title}>Criar projeto</h1>
