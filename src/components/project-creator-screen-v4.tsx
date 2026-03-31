@@ -29,6 +29,26 @@ const initialFormState: FormState = {
   responsavelCampanhas: ""
 };
 
+function getProgressEstimate(progress: number) {
+  if (progress >= 100) {
+    return "Concluindo a criação no Asana";
+  }
+
+  if (progress >= 86) {
+    return "Finalizando. Deve concluir em instantes";
+  }
+
+  if (progress >= 62) {
+    return "Etapa avançada. Tempo estimado restante: menos de 1 minuto";
+  }
+
+  if (progress >= 34) {
+    return "Processando no Asana. Tempo estimado restante: cerca de 1 minuto";
+  }
+
+  return "Iniciando a criação. Tempo estimado restante: cerca de 2 minutos";
+}
+
 export function ProjectCreatorScreenV4() {
   const [mode, setMode] = useState<Mode>("fixed");
   const [formState, setFormState] = useState<FormState>(initialFormState);
@@ -189,6 +209,7 @@ export function ProjectCreatorScreenV4() {
   ]
     .filter(Boolean)
     .join(" ");
+  const progressEstimate = getProgressEstimate(progress);
 
   return (
     <main className={styles.page}>
@@ -369,7 +390,7 @@ export function ProjectCreatorScreenV4() {
                     <div className={styles.progressFill} style={{ width: `${progress}%` }} />
                   </div>
                   <p className={styles.progressHint}>
-                    Isso pode levar 1 minuto ou alguns minutos
+                    {progressEstimate}
                     <span className={styles.progressHintDots} aria-hidden="true">
                       <span>.</span>
                       <span>.</span>

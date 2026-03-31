@@ -4,6 +4,26 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatedProjectButton } from "@/components/animated-project-button";
 import styles from "./page.module.css";
 
+function getProgressEstimate(progress: number) {
+  if (progress >= 100) {
+    return "Concluindo a criação no Asana";
+  }
+
+  if (progress >= 86) {
+    return "Finalizando. Deve concluir em instantes";
+  }
+
+  if (progress >= 62) {
+    return "Etapa avançada. Tempo estimado restante: menos de 1 minuto";
+  }
+
+  if (progress >= 34) {
+    return "Processando no Asana. Tempo estimado restante: cerca de 1 minuto";
+  }
+
+  return "Iniciando a criação. Tempo estimado restante: cerca de 2 minutos";
+}
+
 export default function PreviewButtonPage() {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -120,6 +140,7 @@ export default function PreviewButtonPage() {
   ]
     .filter(Boolean)
     .join(" ");
+  const progressEstimate = getProgressEstimate(progress);
 
   return (
     <main className={styles.page}>
@@ -142,7 +163,7 @@ export default function PreviewButtonPage() {
             <div className={styles.progressFill} style={{ width: `${progress}%` }} />
           </div>
           <p className={styles.progressHint}>
-            Isso pode levar 1 minuto ou alguns minutos
+            {progressEstimate}
             <span className={styles.progressHintDots} aria-hidden="true">
               <span>.</span>
               <span>.</span>
